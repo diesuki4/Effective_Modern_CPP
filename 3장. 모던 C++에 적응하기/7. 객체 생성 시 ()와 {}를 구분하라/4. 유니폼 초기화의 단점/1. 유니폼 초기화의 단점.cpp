@@ -99,7 +99,7 @@ int main(int argc, char* argv[])
      * 빈 유니폼 초기화로 생성하면?
      */
     Widget2 r{};    // 기본 생성자
-    Widget2 s();    // Widget2 객체를 반환하는 s() 라는 함수의 extern 선언
+    Widget2 s();    // Widget2 객체를 반환하는 s() 라는 함수의 전방 선언
 
     Widget2 t{{}};  // initializer_list<long double>
     Widget2 u({});  // initializer_list<long double>

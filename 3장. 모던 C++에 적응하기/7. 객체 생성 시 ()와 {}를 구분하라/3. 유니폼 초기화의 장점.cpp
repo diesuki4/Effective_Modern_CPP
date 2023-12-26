@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
      */
 
     // 프로그래머: 기본 생성자를 호출하는 Widget 타입의 객체 w1
-    // 컴파일러: Widget 객체를 반환하는 함수 w1() 의 extern 선언
+    // 컴파일러: Widget 객체를 반환하는 함수 w1() 의 전방 선언
     Widget w1();
 
     // 유니폼 초기화는 이 문제에도 대응이 가능하다.
