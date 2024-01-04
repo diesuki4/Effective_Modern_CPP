@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
     if (sizeof(p) == sizeof(uq1))
         cout << "[" << sizeof(uq1) << "] Raw Pointer 와 unique_ptr 의 크기는 같다." << endl;
 
-    unique_ptr<int, void(*)(int*)> uq2(new int(5), custom_deleter);
+    unique_ptr<int, decltype(custom_deleter)*> uq2(new int(5), custom_deleter);
 
     if (sizeof(uq1) != sizeof(uq2))
         cout << "[" << sizeof(uq2) << "] unique_ptr 의 크기는 커스텀 삭제자를 사용하면 함수 포인터 크기만큼 추가된다." << endl;

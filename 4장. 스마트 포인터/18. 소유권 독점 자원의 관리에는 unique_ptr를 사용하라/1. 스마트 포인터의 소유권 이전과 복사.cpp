@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
     // 이건 복사이므로, 불가
     // unique_ptr<int> a4(a1);
 
-    unique_ptr<int, void(*)(int*)> a5(new int(5), custom_deleter);
+    unique_ptr<int, decltype(custom_deleter)*> a5(new int(5), custom_deleter);
     // 아예 다른 템플릿 클래스이므로, 서로 소유권 이전이 불가
     // a5 = move(a2);
 
