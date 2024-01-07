@@ -6,7 +6,7 @@
 using namespace std;
 
 /*
- * 재정의(Redefining) vs 오버라이딩(Overriding)
+ * 재정의(Redefining), 오버라이딩(Overriding)
  * 
  * 비가상 함수의 재정의는 오버라이딩이 아니다.
  *
