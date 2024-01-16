@@ -5,6 +5,7 @@ using namespace std;
 /*
  * 암시적으로 noexcept으로 선언되는 것들
  */
+ 
 namespace mystd
 {
     /* 모든 메모리 해제 함수들 */
@@ -14,12 +15,14 @@ namespace mystd
 
 class Widget
 {
+public:
     /* 모든 소멸자 */
     ~Widget() noexcept;
 };
 
 class Button
 {
+public:
     /* 명시적으로 noexcept 이 아님을 알리거나
      * 이런 소멸자를 갖는 객체를 멤버로 가질 경우
      *
@@ -35,6 +38,16 @@ class Button
      * 소멸자는 예외인 것.*/
     ~Button() noexcept(false);
 };
+
+class Slider
+{
+    // noexcept 이 아닌 소멸자의 멤버가 있으므로
+    Button b;
+
+public:
+    // 이 소멸자도 noexcept 으로 지정되지 않는다.
+    ~Slider();
+}
 
 int main(int argc, char* argv[])
 {

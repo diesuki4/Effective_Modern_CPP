@@ -26,7 +26,7 @@ void NewFunc()
  *
  * 이런 함수들은 noexcept 으로 지정할 수 없고,
  * 그래서 대부분의 함수는 noexcept 이 아닌 것이다. */
-int ExceptionNeutralFunC()
+int ExceptionNeutral()
 {
     NewFunc();
 
@@ -53,9 +53,12 @@ int BadImplementation() noexcept
     return 100;
 
     /* 이런 방식은 코드도 복잡해지고, 사용자가 반환 값도 검증해야 하고,
-     * noexcept 으로 인한 최적화 이점보다 내부에서 처리할 게 더 많아졌다.
+     * noexcept 으로 인한 최적화 이점보다 내외부에서 처리할 게 더 많아졌다.
      *
-     * 간단히, 배보다 배꼽이 더 커졌다는 것. */
+     * 간단히, 배보다 배꼽이 더 커진 것.
+     *
+     * 따라서, 함수의 <자연스러운 구현> 이 예외를 방출하지 않을 때만
+     * noexcept 으로 선언하는 것이 바람직하다. */
 }
 
 int main(int argc, char* argv[])
