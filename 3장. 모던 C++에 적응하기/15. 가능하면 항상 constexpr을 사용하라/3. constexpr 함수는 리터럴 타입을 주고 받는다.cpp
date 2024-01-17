@@ -27,7 +27,7 @@ public:
 
     /* C++11 에서는 2가지 제약 때문에 Setter 를 constexpr 로 사용할 수 없었다.
      * 
-     * 1. constexpr 멤버 함수 내에서 멤버 수정이 불가능하도록, 암묵적으로 const 로 선언됐다.
+     * 1. constexpr 멤버 함수는 멤버 수정이 불가능하도록, 암묵적으로 const 로 선언됐다.
      * 2. 반환인 void 가 리터럴 타입이 아니었다.
      *
      * C++14 부터는 두 제약 모두 없어져, Setter 도 constexpr 로 선언할 수 있다.
