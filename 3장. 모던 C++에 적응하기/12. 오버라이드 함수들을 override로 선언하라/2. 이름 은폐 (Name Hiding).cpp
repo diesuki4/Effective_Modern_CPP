@@ -117,8 +117,10 @@ int main(int argc, char* argv[])
     base.printE("CCC");  // Base
 
     derived.printA();       // Derived
-    // derived.printC("BBB");
+    // derived.printC("AAA");
+    derived.Base::printC("AAA");    // 부모 Scope 를 정해주면 호출 가능
     // derived.printD("BBB");
+    derived.Base::printD("BBB");    // 부모 Scope 를 정해주면 호출 가능
     derived.printE("CCC");  // Base
     derived.printE(1);      // Base
 

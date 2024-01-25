@@ -53,7 +53,12 @@ int main(int argc, char* argv[])
     /* constexpr 함수의 결과는 상수 표현식이나 constexpr 변수에 담길 때만
      * 컴파일 시점에 계산된다.
      *
-     * const 변수나 일반 변수는 런타임에 호출 */
+     * const 변수나 일반 변수는 원칙적으로는 런타임에 호출되어야 하나,
+     *
+     * 컴파일러 최적화에 의해 미리 계산될 수 있다.
+     *
+     * 하지만, 여기서 constexpr 의 컴파일 시점 계산과 컴파일러 최적화는
+     * 별개의 문제다. */
     int arr[Add(2, 3)];     // int arr[5]
     array<int, Add(2, 3)>;  // array<int, 5>
 
