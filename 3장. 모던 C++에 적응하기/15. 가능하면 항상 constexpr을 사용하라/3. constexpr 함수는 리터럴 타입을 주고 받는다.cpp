@@ -41,21 +41,21 @@ public:
     constexpr void SetX(unsigned newX) { x = newX; }
     constexpr void SetY(unsigned newY) { y = newY; }
 
-    /* Trival(자명한) 소멸자란?
+    /* Trivial(자명한) 소멸자란?
      * 
      * 아무것도 하지 않는 소멸자
      *
      * 1. 사용자 정의가 아닌, 암시적 추가
      * 2. Non-virtual
-     * 3. 모든 멤버의 소멸자도 Trival */
+     * 3. 모든 멤버의 소멸자도 Trivial */
 
     /* 컴파일 타임에 사용 가능한 사용자 정의 리터럴 타입은
-     * 꼭 Trival 소멸자를 가져야 한다.
+     * 꼭 Trivial 소멸자를 가져야 한다.
      * 
      * 즉, 아무것도 하지 않는 소멸자만 컴파일 타임에 호출이 가능하다는 것.
      *
      * 따라서, 소멸자를 명시할 수 없고
-     * 꼭 암시적으로 생성된 Trival 소멸자를 사용해야 한다.
+     * 꼭 암시적으로 생성된 Trivial 소멸자를 사용해야 한다.
     ~Point() {} */
 };
 
