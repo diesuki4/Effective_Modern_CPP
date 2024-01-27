@@ -14,7 +14,14 @@ using namespace std;
  * 3. 가장 성가신 구문 해석(Most vexing parse) 에서 자유롭다.
  */
 
-class Widget { };
+class Widget
+{
+    int arr[3];
+
+public:
+    // 멤버 이니셜라이저에서 배열을 초기화하는 데도 쓸 수 있다.
+    Widget() : arr{0, 1, 2} {}
+};
 
 int main(int argc, char* argv[])
 {
