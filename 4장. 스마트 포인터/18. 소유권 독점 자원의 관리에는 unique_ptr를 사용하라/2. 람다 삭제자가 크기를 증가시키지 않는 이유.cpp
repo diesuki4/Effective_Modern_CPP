@@ -61,7 +61,13 @@ auto lambda_deleter = [](int* p) { delete p; };
 int main(int argc, char* argv[])
 {
     cout << sizeof(my_unique_ptr<int, decltype(custom_deleter)*>) << endl;  // 8 Bytes
-    cout << sizeof(my_unique_ptr<int, decltype(lambda_deleter)>) << endl;   // 4 Bytes
+    cout << sizeof(my_unique_ptr<int, decltype(lambda_deleter)>)  << endl;  // 4 Bytes
+
+    // 람다 삭제자도 캡처로 인해 내부에 상태(멤버 변수) 를 갖게 되면, 크기가 증가한다.
+    int x = 1, y = 2;
+    auto lambda_deleter2 = [=](int* p) { cout << x << y; delete p; };       // 8 Bytes
+
+    cout << sizeof(my_unique_ptr<int, decltype(lambda_deleter2)>) << endl;  // 12 Bytes
 
     return 0;
 }

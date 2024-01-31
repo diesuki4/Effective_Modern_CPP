@@ -2,6 +2,7 @@
  * https://lunchballer.com/archives/284
  * https://stackoverflow.com/questions/66758070/the-size-of-closure-lambda-function-not-same-as-stdfunction-or-pointer#answer-66758404
  * https://stackoverflow.com/questions/17197997/lambda-captures-and-member-variables#answer-17198032
+ * https://stackoverflow.com/questions/53445857/why-is-a-lambdas-call-operator-implicitly-const
  */
 #include <iostream>
 
@@ -19,7 +20,7 @@ using namespace std;
  * 클래스 => 람다, 객체 => 클로져
  */
 
-// 개별 캡처가 없는 빈 람다 객체의 크기는 1 이다.
+// 캡처가 없는 빈 람다 객체의 크기는 1 이다.
 class f1lambda
 {
     using fp = int(*)(int);
@@ -42,17 +43,28 @@ public:
     }
 };
 
-// 캡처 변수마다 크기 추가된다.
+/* 캡처 변수마다 크기가 추가된다.
+ *
+ * [&], [=] 같은 기본 캡처는 모든 지역 변수에 해당하는 크기만큼 증가한다.
+ * 실제로는, 최적화에 의해 본문에서 사용되는 변수만 캡처된다. */
 class f2lambda
 {
     const int x;
 
 public:
+    /* 생성자에서 캡처가 초기화되기 때문에,
+     * 호출이 아니라 클로저 생성 시에 변수들을 캡처하는 것 */
     f2lambda(int x) : x{x}
     {
     }
 
-    // 람다 함수는 선언과 정의가 하나인 멤버 함수로 처리되기 때문에, 기본적으로 inline 이다.
+    /* 람다 함수는 선언과 정의가 하나인 멤버 함수로 처리되기 때문에
+     * 기본적으로 inline 이다.
+     *
+     * 또, () 연산자 오버로드가 const 이기 때문에
+     * 값 타입은 수정이 불가능하고, 레퍼런스 타입만 가능한 것이다.
+     *
+     * () 연산자 오버로드가 const 인 이유는 찾아봤지만 잘 모르겠다. */
     auto operator() (int y) const
     {
         return x * y;
